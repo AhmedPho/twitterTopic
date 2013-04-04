@@ -7,6 +7,7 @@ namespace twitterTopic.classes
 {
     public class clean
     {
+        // Stemming 
         string[] Alphabet = { "ا", "ة", "ئ", "ي", "ت", "ى", "و", "أ", "إ", "م", "ن", "ل", "س", "ه" };
         double[] AlphabetWeight = { 5, 5, 3.5, 3.5, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1 };
         string[] MyWordAlphabet;
@@ -14,6 +15,9 @@ namespace twitterTopic.classes
         double[] MyWordAlphabetRank;
         double[] MyWordAlphabetProduct;
         double[,] RootProduct = new double[3, 2];
+
+
+        // Stemming 
         public string GetRoot(string word)
         {
             // if length of word is less then 4 char return word without edit as root
