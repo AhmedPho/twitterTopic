@@ -57,17 +57,27 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="view\test\AhmedTest.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\categorization.cs" />
     <Compile Include="classes\clean.cs" />
     <Compile Include="classes\DBConnection.cs" />
     <Compile Include="classes\emails.cs" />
-    <Compile Include="classes\global.cs" />
+    <Compile Include="classes\module.cs" />
     <Compile Include="classes\profile.cs" />
     <Compile Include="classes\twitterAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="view\test\AhmedTest.aspx.cs">
+      <DependentUpon>AhmedTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\test\AhmedTest.aspx.designer.cs">
+      <DependentUpon>AhmedTest.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
@@ -76,6 +86,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="img\" />
+    <Folder Include="js\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
