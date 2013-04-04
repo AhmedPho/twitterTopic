@@ -60,6 +60,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\categorization.cs" />
+    <Compile Include="classes\clean.cs" />
+    <Compile Include="classes\DBConnection.cs" />
+    <Compile Include="classes\emails.cs" />
+    <Compile Include="classes\global.cs" />
+    <Compile Include="classes\profile.cs" />
+    <Compile Include="classes\twitterAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
