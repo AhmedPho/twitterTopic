@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsControlLibrary1", "WindowsFormsControlLibrary1.csproj", "{BCB53EA5-5A31-4519-8171-FBB4D98EF589}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCB53EA5-5A31-4519-8171-FBB4D98EF589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB53EA5-5A31-4519-8171-FBB4D98EF589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB53EA5-5A31-4519-8171-FBB4D98EF589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB53EA5-5A31-4519-8171-FBB4D98EF589}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
