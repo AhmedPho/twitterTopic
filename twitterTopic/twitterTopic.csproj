@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinqToTwitter">
+      <HintPath>..\..\..\Visual Studio 2012\Projects\twitterOAuthKal\twitterOAuthKal\bin\LinqToTwitter.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -55,13 +58,18 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="twitterOAuthKal">
+      <HintPath>..\..\..\Visual Studio 2012\Projects\twitterOAuthKal\twitterOAuthKal\bin\twitterOAuthKal.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
-    <Content Include="view\test\AhmedTest.aspx" />
+    <Content Include="view\test\Ahmed\AhmedTest.aspx" />
+    <Content Include="view\test\Ahmed\twitterOAuth\done.aspx" />
+    <Content Include="view\test\Ahmed\twitterOAuth\index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -75,13 +83,29 @@
     <Compile Include="classes\profile.cs" />
     <Compile Include="classes\twitterAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="view\test\AhmedTest.aspx.cs">
+    <Compile Include="view\test\Ahmed\AhmedTest.aspx.cs">
       <DependentUpon>AhmedTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="view\test\AhmedTest.aspx.designer.cs">
+    <Compile Include="view\test\Ahmed\AhmedTest.aspx.designer.cs">
       <DependentUpon>AhmedTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="view\test\Ahmed\twitterOAuth\done.aspx.cs">
+      <DependentUpon>done.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\test\Ahmed\twitterOAuth\done.aspx.designer.cs">
+      <DependentUpon>done.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\test\Ahmed\twitterOAuth\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\test\Ahmed\twitterOAuth\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="view\test\Ahmed\twitterOAuth\TwitConect.cs" />
+    <Compile Include="view\test\Ahmed\twitterOAuth\twtUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
