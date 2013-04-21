@@ -92,5 +92,15 @@ namespace twitterTopic.view.test.twitterOAuth
             TwitConect t = new TwitConect();
             t.first();
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/view/test/Ahmed/twitterOAuth/tweets.aspx");
+        }
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/view/control_panel/categoryManagement.aspx");
+        }
     }
 }

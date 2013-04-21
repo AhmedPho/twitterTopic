@@ -32,6 +32,9 @@
         <br />
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="to done --&gt;" />
         <br />
+        <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Tweets" />
+        <br />
+        <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="category M" />
         <br />
         <br />
         <br />

@@ -10,6 +10,9 @@
     <form id="form1" runat="server">
     <div>
     
+        <asp:Label ID="Label5" runat="server" Text="Get Tweet For @"></asp:Label>
+        <asp:TextBox ID="TextBoxUser" runat="server"></asp:TextBox>
+    
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         <br />
         <br />
@@ -24,6 +27,7 @@
         <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
         <br />
         <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+        <br />
         <br />
     
     </div>
