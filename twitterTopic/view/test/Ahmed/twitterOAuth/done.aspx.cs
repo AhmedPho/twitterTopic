@@ -13,6 +13,7 @@ namespace twitterTopic.view.test.twitterOAuth
         twtUser twt;
         protected void Page_Load(object sender, EventArgs e)
         {
+            ///// store user's info from Session
             twt = (twtUser)Session["objTwt"];
             
         }
@@ -26,28 +27,35 @@ namespace twitterTopic.view.test.twitterOAuth
 
             var twitterCtx = new TwitterContext(auth);
 
-            //twtUser twt = (twtUser)Session["objTwt"];
 
-            string name = TextBoxUser.Text;// twt.getScreenName();
+            string name =  twt.getScreenName();//TextBoxUser.Text;
 
+            ////// show token and secret and Screen Name in page 
             Label1.Text = twt.getToken();
             Label2.Text = twt.getTokenSecret();
             Label4.Text = twt.getScreenName();
+
+            ///  first API requst before the while loop to get the "maxID"
             var statusTweets =
               from tweet in twitterCtx.Status
               where tweet.Type == StatusType.User
-                    && tweet.ScreenName == name
-                    && tweet.Count == 200
-                    && tweet.ExcludeReplies == true
-                    && tweet.IncludeMyRetweet == false
-                    && tweet.IncludeRetweets == false
+                    && tweet.ScreenName == name         /// get this user's tweets
+                    && tweet.Count == 200               /// number of tweets to retrieve in single requst  // max is 200
+                    && tweet.ExcludeReplies == true     /// do not show replies
+                    && tweet.IncludeMyRetweet == false  /// do not show my retweet
+                    && tweet.IncludeRetweets == false   /// do not show other pepole retweet
               select tweet;
 
             
             var test = statusTweets.Select(tweet => tweet.Text).ToArray();
             var test2 = statusTweets.Select(tweet => tweet.RetweetCount).ToArray();
             var test3 = statusTweets.Select(tweet => tweet.UserID).ToArray();
+            
+            ////// store tweets and RTConut in var
+            var tmepTweet = statusTweets.Select(tweet => tweet.Text).ToArray();
+            var tempRetweetCount = statusTweets.Select(tweet => tweet.RetweetCount).ToArray();
 
+            
             List<String> test8 = new List<string>();
             test8.AddRange(test);
             List<int> test9 = new List<int>();
@@ -57,6 +65,51 @@ namespace twitterTopic.view.test.twitterOAuth
 
             twt.setarrTwts(test8);
             twt.setarrTwtsRT(test9);
+
+            ///// add tweet and RTCount to temp lists
+            List<String> lstTempTweet = new List<string>();
+            lstTempTweet.AddRange(tmepTweet);
+
+            List<int> lstTempRTCount = new List<int>();
+            lstTempRTCount.AddRange(tempRetweetCount);
+
+            //// to store the Status that retrieve each time from the API   (Status conteant evry thing about the tweet "text" "RTCount" etc..)
+            var statusList = new List<Status>(); ;
+
+            //// 22222222222222222222222222222222222222222222222222222
+            //// the rest of APT requsts (up to 3200 tweets including replies and retweets)
+            int intcall = 1;        // counter for number of requst to twitter API
+            while (statusTweets.Count() != 0)
+            {
+
+                //// get the ID of last tweet retrieved -1
+                ulong maxID = statusTweets.Min(status => ulong.Parse(status.StatusID)) - 1;
+
+
+                statusTweets =
+                  from tweet in twitterCtx.Status
+                  where tweet.Type == StatusType.User
+                        && tweet.ScreenName == name         /// get this user's tweets
+                        && tweet.Count == 200               /// number of tweets to retrieve in single requst  // max is 200
+                        && tweet.ExcludeReplies == true     /// do not show replies
+                        && tweet.IncludeMyRetweet == false  /// do not show my retweet
+                        && tweet.IncludeRetweets == false   /// do not show other pepole retweet
+                        && tweet.MaxID == maxID             /// retrieve before this ID
+                  select tweet;
+
+                ////// no need to wright in console
+                //statusTweets.ToList().ForEach(
+                //    tweet => Console.WriteLine(
+                //    "Name: {0}, Tweet: {1}\n",
+                //    tweet.User.Name, tweet.Text));
+
+                //// store the Status and add 1 to requst counter
+                statusList.AddRange(statusTweets);
+                intcall++;
+
+
+            } /// end while loop
+
 
             List<String> tempTWT = new List<string>();
             tempTWT = twt.getarrTwts();
@@ -70,7 +123,9 @@ namespace twitterTopic.view.test.twitterOAuth
 
             }
             Label3.Text = tempTWT.Count.ToString();
-            //----------------------------------
+            
+            //---------------------------------- start
+            /*
             var lists =
                 (from list in twitterCtx.List
                  where list.Type == ListType.Lists &&
@@ -81,12 +136,10 @@ namespace twitterTopic.view.test.twitterOAuth
             TextBox2.Text = "";
             foreach (var list in lists)
             {
-                Console.WriteLine("ID: {0}  Slug: {1} Description: {2}",
-                    list.ListIDResult, list.SlugResult, list.Description);
                  TextBox1.Text = TextBox1.Text + " " +list.ListIDResult+" - " + list.SlugResult + " - " +  list.Description + "\n";
-            }
+            }*/
             //---------------------------------
-            foreach (var Mylists in lists)
+            /*foreach (var Mylists in lists)
             {
                 var lists1 =
                     (from list in twitterCtx.List
@@ -101,8 +154,8 @@ namespace twitterTopic.view.test.twitterOAuth
                 {
                     TextBox2.Text = TextBox2.Text + UsersOfList.Identifier.ID + " - " + UsersOfList.Name.ToString() + "\n";
                 }
-            }
-            
+            }*/
+            //----------------------------------- end
         }
 
         

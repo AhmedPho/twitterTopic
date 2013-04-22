@@ -32,5 +32,8 @@ namespace twitterTopic.view.test.twitterOAuth
         public void setarrTwts(List<string> twts) { arrTwts.AddRange(twts); }
         public void setarrTwtsRT(List<int> twtsRT) { arrTwtsRT.AddRange(twtsRT); }
 
+        public void setLstTwts(List<string> twts) { arrTwts.AddRange(twts); }
+        public void setLstTwtsRT(List<int> twtsRT) { arrTwtsRT.AddRange(twtsRT); }
+
     }
 }
