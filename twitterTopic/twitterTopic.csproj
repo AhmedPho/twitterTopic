@@ -150,7 +150,6 @@
     <Compile Include="view\test\Ahmed\twitterOAuth\tweets.aspx.designer.cs">
       <DependentUpon>tweets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="view\test\Ahmed\twitterOAuth\TwitConect.cs" />
     <Compile Include="view\test\Ahmed\twitterOAuth\twtUser.cs" />
   </ItemGroup>
   <ItemGroup>

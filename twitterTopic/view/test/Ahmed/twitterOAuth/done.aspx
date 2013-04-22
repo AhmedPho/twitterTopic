@@ -13,21 +13,39 @@
         <asp:Label ID="Label5" runat="server" Text="Get Tweet For @"></asp:Label>
         <asp:TextBox ID="TextBoxUser" runat="server"></asp:TextBox>
     
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
+        &nbsp;&nbsp;&nbsp;
+    
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Retrieve Tweets" />
+        <br />
+        <asp:TextBox ID="TextBox3" runat="server" Height="387px" style="margin-top: 0px" TextMode="MultiLine" Width="1098px"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Label ID="Label6" runat="server" Text="OAuthToken (Access Token):"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label1" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label7" runat="server" Text="AccessToken (Access Token Secret):"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label2" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label8" runat="server" Text="User Screen Name (authenticated user):"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label4" runat="server"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="Label9" runat="server" Text="Number of tweets retrieved:"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label3" runat="server"></asp:Label>
+        <br />
+        <asp:Label ID="Label10" runat="server" Text="Number of requsts:"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+        <asp:Label ID="Label11" runat="server"></asp:Label>
+        <br />
+        <br />
         <br />
         <br />
         <asp:TextBox ID="TextBox1" runat="server" Height="389px" TextMode="MultiLine" Width="549px"></asp:TextBox>
         <asp:TextBox ID="TextBox2" runat="server" Height="389px" TextMode="MultiLine" Width="549px"></asp:TextBox>
-        <asp:TextBox ID="TextBox3" runat="server" Height="387px" style="margin-top: 0px" TextMode="MultiLine" Width="545px"></asp:TextBox>
-        <br />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        <br />
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-        <br />
-        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-        <br />
-        <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-        <br />
         <br />
     
     </div>

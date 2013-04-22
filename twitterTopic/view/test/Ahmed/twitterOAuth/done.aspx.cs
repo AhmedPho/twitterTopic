@@ -11,6 +11,7 @@ namespace twitterTopic.view.test.twitterOAuth
     public partial class done : System.Web.UI.Page
     {
         twtUser twt;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ///// store user's info from Session
@@ -28,13 +29,22 @@ namespace twitterTopic.view.test.twitterOAuth
             var twitterCtx = new TwitterContext(auth);
 
 
-            string name =  twt.getScreenName();//TextBoxUser.Text;
+            
+
+            /////////////////////////////////
+            ///// get this user's tweets ////
+            string name = TextBoxUser.Text; //twt.getScreenName(); //"mishari11";
+            /////////////////////////////////
+            /////////////////////////////////
+
+
 
             ////// show token and secret and Screen Name in page 
             Label1.Text = twt.getToken();
             Label2.Text = twt.getTokenSecret();
             Label4.Text = twt.getScreenName();
 
+            //// 111111111111111111111111111111111111111111111111111111111
             ///  first API requst before the while loop to get the "maxID"
             var statusTweets =
               from tweet in twitterCtx.Status
@@ -47,24 +57,18 @@ namespace twitterTopic.view.test.twitterOAuth
               select tweet;
 
             
-            var test = statusTweets.Select(tweet => tweet.Text).ToArray();
-            var test2 = statusTweets.Select(tweet => tweet.RetweetCount).ToArray();
-            var test3 = statusTweets.Select(tweet => tweet.UserID).ToArray();
+            
+            ////// (ahmed) this is for the userID for each tweet i do not if you need it or not (you wrote it) 
+            //var test3 = statusTweets.Select(tweet => tweet.UserID).ToArray();
+            //List<String> test10 = new List<string>();
+            //test10.AddRange(test3);
+
             
             ////// store tweets and RTConut in var
             var tmepTweet = statusTweets.Select(tweet => tweet.Text).ToArray();
             var tempRetweetCount = statusTweets.Select(tweet => tweet.RetweetCount).ToArray();
 
-            
-            List<String> test8 = new List<string>();
-            test8.AddRange(test);
-            List<int> test9 = new List<int>();
-            test9.AddRange(test2);
-            List<String> test10 = new List<string>();
-            test10.AddRange(test3);
-
-            twt.setarrTwts(test8);
-            twt.setarrTwtsRT(test9);
+    
 
             ///// add tweet and RTCount to temp lists
             List<String> lstTempTweet = new List<string>();
@@ -72,6 +76,7 @@ namespace twitterTopic.view.test.twitterOAuth
 
             List<int> lstTempRTCount = new List<int>();
             lstTempRTCount.AddRange(tempRetweetCount);
+
 
             //// to store the Status that retrieve each time from the API   (Status conteant evry thing about the tweet "text" "RTCount" etc..)
             var statusList = new List<Status>(); ;
@@ -97,11 +102,7 @@ namespace twitterTopic.view.test.twitterOAuth
                         && tweet.MaxID == maxID             /// retrieve before this ID
                   select tweet;
 
-                ////// no need to wright in console
-                //statusTweets.ToList().ForEach(
-                //    tweet => Console.WriteLine(
-                //    "Name: {0}, Tweet: {1}\n",
-                //    tweet.User.Name, tweet.Text));
+                
 
                 //// store the Status and add 1 to requst counter
                 statusList.AddRange(statusTweets);
@@ -111,19 +112,43 @@ namespace twitterTopic.view.test.twitterOAuth
             } /// end while loop
 
 
+            ////// store tweets and RTConut in var
+            tmepTweet = statusList.Select(tweet => tweet.Text).ToArray();
+            tempRetweetCount = statusList.Select(tweet => tweet.RetweetCount).ToArray();
+
+            ///// add tweet and RTCount to temp lists
+            lstTempTweet.AddRange(tmepTweet);
+            lstTempRTCount.AddRange(tempRetweetCount);
+
+            //// add tweet and RTCount twtUser object "twt"
+            twt.setLstTwts(lstTempTweet);
+            twt.setLstTwtsRT(lstTempRTCount);
+
+
+
+
+            /////////////   print all tweets    ///////////////////////////////
+
             List<String> tempTWT = new List<string>();
             tempTWT = twt.getarrTwts();
+
             List<int> tempRT = new List<int>();
             tempRT = twt.getarrTwtsRT();
+
             for (int k = 0; k < tempTWT.Count; k++)
             {
                 classes.DBConnection NewConnection = new classes.DBConnection();
                 NewConnection.AddTweetInDB(tempTWT[k], " ", TextBoxUser.Text, " ");
-                TextBox3.Text += tempTWT[k] + "\n\n" + tempRT[k] + "\n\n\n" + test10[k] + "\n\n\n";
+                TextBox3.Text += tempTWT[k] + "\n\n" + "#RT:  " + tempRT[k] + "\n\n-----------------------------------------------------\n";
 
             }
+
             Label3.Text = tempTWT.Count.ToString();
+            Label11.Text = intcall.ToString();
             
+
+
+
             //---------------------------------- start
             /*
             var lists =

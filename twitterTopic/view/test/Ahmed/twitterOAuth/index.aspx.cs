@@ -15,13 +15,13 @@ namespace twitterTopic.view.test.twitterOAuth
     {
 
         private WebAuthorizer auth;
-        private TwitterContext twitterCtx;
+        //private TwitterContext twitterCtx;
         private string name;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            var twitterCtx = new TwitterContext();
+            //var twitterCtx = new TwitterContext();
 
             IOAuthCredentials credentials = new SessionStateCredentials();
 
@@ -51,21 +51,31 @@ namespace twitterTopic.view.test.twitterOAuth
                 
             }
 
-            twitterCtx = new TwitterContext(auth);
+            var twitterCtx = new TwitterContext(auth);
             //twitterCtx = auth.IsAuthorized ? new TwitterContext(auth) : new TwitterContext();
+
+
+            name = credentials.ScreenName;
             string token = credentials.OAuthToken;
             string sec = credentials.AccessToken;
-            name = credentials.ScreenName;
+
+            ////// show token and secret in index page after Authorization
             Label2.Text = token;
             Label3.Text = sec;
             Label4.Text = credentials.UserId;
 
+
+            ////// creat twtUser object to store the info about the user
             twtUser twt = new twtUser(name, token, sec);
-            
+
+
+            ////// move user's info to another page throw Session
             Session["objTwt"] = twt;
 
             
         }
+
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -75,22 +85,6 @@ namespace twitterTopic.view.test.twitterOAuth
         protected void Button2_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/view/test/Ahmed/twitterOAuth/done.aspx");
-        }
-
-        protected void Button3_Click(object sender, EventArgs e)
-        {
-
-
-           // var statusTweets = (from tweet in twitterCtx.Status where tweet.Type == StatusType.User && tweet.ScreenName == "ikhalid" select tweet);
-
-            //statusTweets.ToList().ForEach(tweet => Console.WriteLine( "Name: {0}, Tweet: {1}\n", tweet.User.Name, tweet.Text));
-        }
-
-        protected void Button4_Click(object sender, EventArgs e)
-        {
-            Uri u = Request.Url;
-            TwitConect t = new TwitConect();
-            t.first();
         }
 
         protected void Button5_Click(object sender, EventArgs e)
