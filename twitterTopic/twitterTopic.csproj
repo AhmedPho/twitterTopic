@@ -68,6 +68,7 @@
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <Content Include="extra\stopword.txt" />
     <Content Include="img\login.png" />
     <Content Include="img\logo.png" />
     <Content Include="view\control_panel\categoryManagement.aspx" />
@@ -78,6 +79,7 @@
     <Content Include="view\test\Ahmed\twitterOAuth\done.aspx" />
     <Content Include="view\test\Ahmed\twitterOAuth\index.aspx" />
     <Content Include="view\test\Ahmed\twitterOAuth\tweets.aspx" />
+    <Content Include="view\test\Khalid\khlaidTest.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -167,6 +169,13 @@
       <DependentUpon>tweets.aspx</DependentUpon>
     </Compile>
     <Compile Include="classes\TwitterUser.cs" />
+    <Compile Include="view\test\Khalid\khlaidTest.aspx.cs">
+      <DependentUpon>khlaidTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\test\Khalid\khlaidTest.aspx.designer.cs">
+      <DependentUpon>khlaidTest.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataSet1.xsc">

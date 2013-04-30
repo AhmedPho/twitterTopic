@@ -1,7 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace twitterTopic.classes
 {
@@ -159,6 +162,144 @@ namespace twitterTopic.classes
                 return 0;
             }
         }
-    
+
+
+        //////////////////////////////////////
+        //////////////////////////////////////
+        ///////  khalid Remove Stop word  ////
+        //////////////////////////////////////
+        //////////////////////////////////////
+
+        //// import stopword from file
+        static string stopwordList;
+
+        //// counter of number stopword removed
+        static int intNumWordRmov = 0;
+
+        public int getNumWordRmov() { return intNumWordRmov; }
+        
+
+        //!!!!!!!!!!!!!!!!!!!  ONLY CALL THIS FUNCTION  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //==============================================================================
+        //######  START ###################### REMOVE STOPWORDS ########################
+        public string stopwordsRemove(string strTXT)
+        {
+            intNumWordRmov = 0;
+
+            //// read stopword.txt file
+            stopwordList = File.ReadAllText("C:/Users/kal/Documents/GitHub/twitterTopic/twitterTopic/extra/stopword.txt");
+
+            //// removing hash and http and non arabic word from input txt
+            strTXT = hashRemove(strTXT);
+            strTXT = httpRemove(strTXT);
+            strTXT = removeNonArabic(strTXT);
+
+            //// replising lines and spaces with # and split each word into array
+            strTXT = strTXT.Replace(Environment.NewLine, "#");
+            strTXT = strTXT.Replace(" ", "#");
+            string[] arrIN = strTXT.Split('#');
+
+            //// spliting stopword string inro array
+            stopwordList = stopwordList.Replace(Environment.NewLine, "#");
+            string[] arrLST = stopwordList.Split('#');
+
+            //// comper each input with all stopword if equl removit and add 1 to counter
+            for (int i = 0; i < arrIN.Length; i++)
+            {
+                for (int j = 0; j < arrLST.Length; j++)
+                {
+                    if (arrIN[i] == arrLST[j]) { arrIN[i] = ""; intNumWordRmov++; }
+                }
+            }
+
+            //// join input array into out string with speace and return
+            string strOUT = "";
+            strOUT = string.Join(" ", arrIN);
+            strOUT = Regex.Replace(strOUT, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
+            return strOUT;
+        }
+        //######  END ###################### REMOVE STOPWORDS ########################
+        //============================================================================
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+        //############################ REMOVE HASH ##############################
+        static string hashRemove(string strIN)
+        {
+            strIN = strIN.Replace(Environment.NewLine, " ");
+            string[] arrIN = strIN.Split(' ');
+
+            for (int i = 0; i < arrIN.Length; i++)
+            {
+                if (arrIN[i].StartsWith("#")) { arrIN[i] = ""; }
+            }
+
+
+            string strOUT = "";
+            strOUT = string.Join(" ", arrIN);
+            return strOUT;
+        }
+
+
+
+
+        //############################ REMOVE HTTP ##############################
+        static string httpRemove(string strIN)
+        {
+            strIN = strIN.Replace(Environment.NewLine, " ");
+            string[] arrIN = strIN.Split(' ');
+
+            for (int i = 0; i < arrIN.Length; i++)
+            {
+                if (arrIN[i].StartsWith("http://")) { arrIN[i] = ""; }
+            }
+
+
+            string strOUT = "";
+            strOUT = string.Join(" ", arrIN);
+            return strOUT;
+        }
+
+
+
+
+        //############################ REMOVE NONE ARABIC ########################
+        static string removeNonArabic(string strIN)
+        {
+
+            strIN = strIN.Replace(" ", "#");
+            strIN = strIN.Replace(Environment.NewLine, "#");
+            string strArabicChrcts = "ءاأإآىئؤبتةثجحخدذرزسشصضطظعغفقكلمنهوي";
+
+            // convert strIN to array char
+            char[] buffer = strIN.ToCharArray();
+            for (int i = 0; i < buffer.Length; i++)
+            {
+                //char letter = buffer[i];
+                if (!(buffer[i] == '#'))
+                {
+                    if (!(strArabicChrcts.Contains(buffer[i])))
+                    {
+                        buffer[i] = '&';
+                    }
+                }
+
+            }
+
+
+            //removing 
+            // buffer = buffer.Except('&');
+
+            string strOUT = new string(buffer);
+            strOUT = strOUT.Replace("&", "");
+            strOUT = strOUT.Replace("#", Environment.NewLine);
+            // strIN = strIN.Replace("%", Environment.NewLine);
+            return strOUT;
+
+        }
+
+
+
     }
 }

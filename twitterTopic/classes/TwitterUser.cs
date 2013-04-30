@@ -51,5 +51,8 @@ namespace twitterTopic.classes
         public void setLstTwts(List<string> twts) { arrTwts.AddRange(twts); }
         public void setLstTwtsRT(List<int> twtsRT) { arrTwtsRT.AddRange(twtsRT); }
 
+        ////  !!!!!!!!!!  there is no ScreenName
+        public string getScreenName() { return UserName; }
+        
     }
 }
