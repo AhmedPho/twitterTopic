@@ -62,6 +62,11 @@ namespace twitterTopic.view.control_panel
             MyDBConnection.LinkListToCategory(TextBox3.Text, DropDownList3.SelectedValue);
         }
 
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
 
     }

@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using LinqToTwitter;
 using System.Configuration;
 using System.Net;
+using twitterTopic.classes;
+//using System.Data.SqlClient.SqlException;
 
 
 namespace twitterTopic.view.test.twitterOAuth
@@ -16,7 +18,7 @@ namespace twitterTopic.view.test.twitterOAuth
 
         private WebAuthorizer auth;
         //private TwitterContext twitterCtx;
-        private string name;
+        private string UserId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -55,7 +57,7 @@ namespace twitterTopic.view.test.twitterOAuth
             //twitterCtx = auth.IsAuthorized ? new TwitterContext(auth) : new TwitterContext();
 
 
-            name = credentials.ScreenName;
+            UserId = credentials.UserId;
             string token = credentials.OAuthToken;
             string sec = credentials.AccessToken;
 
@@ -66,7 +68,7 @@ namespace twitterTopic.view.test.twitterOAuth
 
 
             ////// creat twtUser object to store the info about the user
-            twtUser twt = new twtUser(name, token, sec);
+            TwitterUser twt = new TwitterUser(UserId, token, sec);
 
 
             ////// move user's info to another page throw Session
@@ -84,7 +86,7 @@ namespace twitterTopic.view.test.twitterOAuth
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/view/test/Ahmed/twitterOAuth/done.aspx");
+           Response.Redirect("~/view/test/Ahmed/twitterOAuth/done.aspx");
         }
 
         protected void Button5_Click(object sender, EventArgs e)

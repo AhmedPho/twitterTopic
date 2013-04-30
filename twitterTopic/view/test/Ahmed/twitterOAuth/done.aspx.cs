@@ -5,17 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using LinqToTwitter;
+using twitterTopic.classes;
 
 namespace twitterTopic.view.test.twitterOAuth
 {
     public partial class done : System.Web.UI.Page
     {
-        twtUser twt;
+        TwitterUser twt;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             ///// store user's info from Session
-            twt = (twtUser)Session["objTwt"];
+            twt = (TwitterUser)Session["objTwt"];
             
         }
 
@@ -42,7 +43,7 @@ namespace twitterTopic.view.test.twitterOAuth
             ////// show token and secret and Screen Name in page 
             Label1.Text = twt.getToken();
             Label2.Text = twt.getTokenSecret();
-            Label4.Text = twt.getScreenName();
+            Label4.Text = twt.getTwitterID();
 
             //// 111111111111111111111111111111111111111111111111111111111
             ///  first API requst before the while loop to get the "maxID"
@@ -149,8 +150,7 @@ namespace twitterTopic.view.test.twitterOAuth
 
 
 
-            //---------------------------------- start
-            /*
+
             var lists =
                 (from list in twitterCtx.List
                  where list.Type == ListType.Lists &&
@@ -162,9 +162,9 @@ namespace twitterTopic.view.test.twitterOAuth
             foreach (var list in lists)
             {
                  TextBox1.Text = TextBox1.Text + " " +list.ListIDResult+" - " + list.SlugResult + " - " +  list.Description + "\n";
-            }*/
+            }
             //---------------------------------
-            /*foreach (var Mylists in lists)
+            foreach (var Mylists in lists)
             {
                 var lists1 =
                     (from list in twitterCtx.List
@@ -179,7 +179,7 @@ namespace twitterTopic.view.test.twitterOAuth
                 {
                     TextBox2.Text = TextBox2.Text + UsersOfList.Identifier.ID + " - " + UsersOfList.Name.ToString() + "\n";
                 }
-            }*/
+            }
             //----------------------------------- end
         }
 

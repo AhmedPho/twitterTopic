@@ -74,5 +74,25 @@
                 <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" style="width: 38px" Text="Link" />
             </td>
         </tr>
+        <tr>
+            <td>
+                <asp:Label ID="Label8" runat="server" Text="Get Tweets : "></asp:Label>
+            </td>
+            <td>
+                <asp:Label ID="Label7" runat="server" Text="Cateogry : "></asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList ID="DropDownList4" runat="server" DataSourceID="SqlDataSource4" DataTextField="CategoryName" DataValueField="IDOfCategory">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Database1ConnectionString %>" SelectCommand="SELECT CategoryName, IDOfCategory FROM Category WHERE (ListID IS NOT NULL)"></asp:SqlDataSource>
+            </td>
+            <td>
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+            <td>
+                <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Get Tweets" />
+            </td>
+        </tr>
     </table>
 </asp:Content>

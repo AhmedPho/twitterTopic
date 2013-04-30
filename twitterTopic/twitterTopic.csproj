@@ -71,7 +71,9 @@
     <Content Include="img\login.png" />
     <Content Include="img\logo.png" />
     <Content Include="view\control_panel\categoryManagement.aspx" />
+    <Content Include="view\profile.aspx" />
     <Content Include="view\index.aspx" />
+    <Content Include="view\report.aspx" />
     <Content Include="view\test\Ahmed\AhmedTest.aspx" />
     <Content Include="view\test\Ahmed\twitterOAuth\done.aspx" />
     <Content Include="view\test\Ahmed\twitterOAuth\index.aspx" />
@@ -108,6 +110,13 @@
     <Compile Include="view\control_panel\ControlPanel.Master.designer.cs">
       <DependentUpon>ControlPanel.Master</DependentUpon>
     </Compile>
+    <Compile Include="view\profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="view\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -121,6 +130,13 @@
     </Compile>
     <Compile Include="view\MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="view\report.aspx.cs">
+      <DependentUpon>report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="view\report.aspx.designer.cs">
+      <DependentUpon>report.aspx</DependentUpon>
     </Compile>
     <Compile Include="view\test\Ahmed\AhmedTest.aspx.cs">
       <DependentUpon>AhmedTest.aspx</DependentUpon>
@@ -150,7 +166,7 @@
     <Compile Include="view\test\Ahmed\twitterOAuth\tweets.aspx.designer.cs">
       <DependentUpon>tweets.aspx</DependentUpon>
     </Compile>
-    <Compile Include="view\test\Ahmed\twitterOAuth\twtUser.cs" />
+    <Compile Include="classes\TwitterUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataSet1.xsc">

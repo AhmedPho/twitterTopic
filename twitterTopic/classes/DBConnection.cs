@@ -9,10 +9,36 @@ namespace twitterTopic.classes
     {
         DataSet1TableAdapters.TweetForCategoryTableAdapter MyTweetForCategoryTableAdapter;
         DataSet1TableAdapters.CategoryTableAdapter MyCategoryTableAdapter;
+        DataSet1TableAdapters.ErrorsTableAdapter MyErrorsTableAdapter;
+        DataSet1TableAdapters.UsersTableAdapter MyUsersTableAdapter;
+        DataSet1.UsersDataTable MyUsersDataTable;
         public DBConnection()
         {
             MyTweetForCategoryTableAdapter = new DataSet1TableAdapters.TweetForCategoryTableAdapter();
             MyCategoryTableAdapter = new DataSet1TableAdapters.CategoryTableAdapter();
+            MyErrorsTableAdapter = new DataSet1TableAdapters.ErrorsTableAdapter();
+            MyUsersTableAdapter = new DataSet1TableAdapters.UsersTableAdapter();
+        }
+        public Boolean IsSignUp(string TwitterID)
+        {
+            MyUsersDataTable = MyUsersTableAdapter.GetIDByTwitterID(TwitterID);
+            if (MyUsersDataTable.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public string GetID(string TwitterID)
+        {
+            MyUsersDataTable = MyUsersTableAdapter.GetIDByTwitterID(TwitterID);
+            foreach (DataSet1.UsersRow row in MyUsersDataTable.Rows)
+            {
+                return row.IdOfUser.ToString();
+            }
+            return "0";
         }
         public Boolean AddTweetInDB(string tweet, string dataOfTweet, string fromUser, string idOfTweet)
         {
@@ -23,6 +49,7 @@ namespace twitterTopic.classes
             }
             catch (Exception ex)
             {
+                MyErrorsTableAdapter.InsertQuery(ex.ToString(), DateTime.Now.ToString());
                 return false;
             }
 
@@ -36,6 +63,7 @@ namespace twitterTopic.classes
             }
             catch (Exception ex)
             {
+                MyErrorsTableAdapter.InsertQuery(ex.ToString(), DateTime.Now.ToString());
                 return false;
             }
         }
@@ -48,6 +76,7 @@ namespace twitterTopic.classes
             }
             catch (Exception ex)
             {
+                MyErrorsTableAdapter.InsertQuery(ex.ToString(), DateTime.Now.ToString());
                 return false;
             }
         }
@@ -60,6 +89,7 @@ namespace twitterTopic.classes
             }
             catch (Exception ex)
             {
+                MyErrorsTableAdapter.InsertQuery(ex.ToString(), DateTime.Now.ToString());
                 return false;
             }
         }
@@ -72,6 +102,7 @@ namespace twitterTopic.classes
             }
             catch (Exception ex)
             {
+                MyErrorsTableAdapter.InsertQuery(ex.ToString(), DateTime.Now.ToString());
                 return false;
             }
            

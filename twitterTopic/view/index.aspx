@@ -5,4 +5,7 @@
 
     &nbsp;<asp:ImageButton ID="Button1" runat="server" Text="Button"  ImageUrl="~/img/login.png" OnClick="Button1_Click" />
     <br />
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <br />
+    <br />
 </asp:Content>
